@@ -12,28 +12,28 @@
 - has_many :messages
 - has_many :members
 
-#### membersテーブル
+## membersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
 
-##### Association
+### Association
 - belongs_to :group
 - belongs_to :user
 
-###### groupsテーブル
+## groupsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |name|text|null: false|
 
-####### Associstion
+### Associstion
 - has_many :messages
 - has_many members
 
-######## messagesテーブル
+## messagesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -42,6 +42,6 @@
 |group_id|integer|null: false, foreign_key: true|
 |user_id|integer|null: false, foreign_key: true|
 
-######### Association
+### Association
 - belongs_to :user
 - belongs_to :group
