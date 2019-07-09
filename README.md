@@ -4,13 +4,14 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|name|text|null: false, index: true|
+|name|string|null: false, index: true|
 |e-mail|text|add_index:users, :name, unique:true|
 |password|text or integer|null: false|
 
 ### Association
 - has_many :messages
 - has_many :groups, through: :members
+- has_many :menbers
 
 ## membersテーブル
 
@@ -27,11 +28,12 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|name|text|null: false|
+|name|string|null: false|
 
 ### Associstion
 - has_many :messages
 - has_many :users, through: :members
+- has_many :groups
 
 ## messagesテーブル
 
