@@ -1,54 +1,46 @@
-    .flash-box
-      グループを作成しました。
-    .wrapper
-      .chat-side
-        .side-header
-          .side-header__box
-            .side-header__box__user-name
-              boss
-            .side-header__box__menu
-              .side-header__box__menu__new-group
-                = link_to"#" do
-                  %i.fa.fa-edit
-              .side-header__box__menu__edit-user
-                = link_to"#" do
-                  %i.fa.fa-cog
+-# .flash-box
+-#   グループを作成しました。
+.wrapper
+  .chat-side
+    .side-header
+      .side-header__box
+        .side-header__box__user-name
+          = current_user.name
+        .side-header__box__menu
+          .side-header__box__menu__new-group
+            = link_to new_group_path do
+              %i.fa.fa-edit
+          .side-header__box__menu__edit-user
+            = link_to edit_user_path(current_user) do
+              %i.fa.fa-cog
 
-        .groups
+    .groups
+      - current_user.groups.each do |group|
+        = link_to group_messages_path(group) do
           .group
-            .group__group-name
-              56_team_a
-            .group__latest-message
-              メッセージ内容1
-          .group
-            .group__group-name
-              56_team_b
-            .group__latest-message
-              メッセージ内容2
-          .group
-            .group__group-name
-              56_team_c
-            .group__latest-message
-              メッセージ内容3
+            .group__name
+              = group.name
+            .group__message
+              メッセージはまだありません。
 
-      .chat-main
-        .main-header
-          .main-header__left-box
-            .main-header__left-box__current-group
-              56_team_a
-            .main-header__left-box__member-list
-              Member:taro jiro boss
-          .main-header__edit-btn
-            Edit
+  .chat-main
+    .main-header
+      .main-header__left-box
+        .main-header__left-box__current-group
+          56_team_a
+        .main-header__left-box__member-list
+          Member:taro jiro boss
+      .main-header__edit-btn
+        Edit
 
-        .messages
-          = render partial:"message"
+    .messages
+      = render partial:"message"
 
-        .form
-          %form
-            .input-box
-              %input.input-box__text(placeholder = "type a message" type = "text" name = "message[content]" id = "message[content]")
-              %label(class = "input-box__image" for = "message_image")
-                %i.fa.fa-image
-                %input(id = "message_image" class = "input-box__search" type = "file")
-            %input.submit-btn(type="submit" name="commit" value="Send" data-disable-with="Send")
+    .form
+      %form
+        .input-box
+          %input.input-box__text(placeholder = "type a message" type = "text" name = "message[content]" id = "message[content]")
+          %label(class = "input-box__image" for = "message_image")
+            %i.fa.fa-image
+            %input(id = "message_image" class = "input-box__search" type = "file")
+        %input.submit-btn(type="submit" name="commit" value="Send" data-disable-with="Send")
