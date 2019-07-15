@@ -1,16 +1,11 @@
 .message
   .message__upper-info
     .message__upper-info__talker
-      boss
+      = message.user.name
     .message__upper-info__date
-      2019/7/9/(tue)18:00
+      = message.created_at.strftime("%Y/%m/%d %H:%M")
   .message__text
-    メッセージ内容１
-.message
-  .message__upper-info
-    .message__upper-info__talker
-      taro
-    .message__upper-info__date
-      2019/7/12/(fri)20:00
-  .message__text
-    メッセージ内容２
+    - if message.content.present?
+      %p.lower-message__content
+        = message.content
+    = image_tag message.image.url, class: 'lower-message__image' if message.image.present?

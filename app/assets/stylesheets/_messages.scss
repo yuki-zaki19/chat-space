@@ -141,45 +141,39 @@ $bright-color: #38AEF0;
         margin-bottom: 10px;
       }
     }
-  .form{
-    height: 90px;
-    padding: 20px 40px;
-    background-color: #ddd;
-  }
-
-    form{
-      display: flex;
-    }
-
-      .input-box{
-        position: relative;
-        width: 100%;
-
-        &__text{
-          height: 50px;
-          width: 100%;
-          padding: 0 40px 0 10px;
-          color: #434a54;
-          border-style: none;
+    
+    .form {
+      background-color: #DDDDDD;
+      box-sizing: border-box;
+      height: 90px;
+      padding: 20px 50px 20px 40px;
+      &__message {
+        border: none;
+        float: left;
+        height: 50px;
+        width: calc(100% - 150px);
+      }
+      &__mask {
+        background-color: white;
+        float: left;
+        height: 50px;
+        padding-right: 10px;
+        &__image {
+          font-size: 20px;
+          line-height: 50px;
         }
-
-        &__image{
-          font-size: 1.3rem;
-          position: absolute;
-          top: 10px;
-          right: 10px;
-          cursor: pointer;
-        }
-
-        &__search{
+        .hidden {
           display: none;
         }
       }
-
-      .submit-btn{
-        height: 50px;
-        width: 100px;
-        margin-left: 15px;
+      &__submit {
         background-color: $bright-color;
+        border: none;
         color: white;
+        float: right;
+        font-size: 16px;
+        height: 50px;
+        margin-left: 15px;
+        padding: 0 30px;
       }
+    }
