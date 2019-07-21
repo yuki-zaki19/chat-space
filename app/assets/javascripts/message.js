@@ -58,37 +58,37 @@ $(function(){
                           ${message.created_at}
                         </div>
                       </div>`
-
-    if (message.content && message.image.url) {
       //data-idが反映されるようにしている
-      var html =`<div class="message" data-id="${message.id}">
-                  ${insert_html}
-                  <div class="message__text">
-                    <p class="lower-message__content">
-                      ${message.content}
-                    </p>
-                    <img src=${message.image.url} class="lower-message__image" >
-                  </div>
-                </div>`
-    } else if (message.content) {
+    var htmlContentImage =`<div class="message" data-id="${message.id}">
+                ${insert_html}
+                <div class="message__text">
+                  <p class="lower-message__content">
+                    ${message.content}
+                  </p>
+                  <img src=${message.image.url} class="lower-message__image" >
+                </div>
+              </div>`
       //同様に、data-idが反映されるようにしている
-      var html =`<div class="message" data-id="${message.id}">
-                  ${insert_html}
-                  <div class="message__text">
-                    <p class="lower-message__content">
-                      ${message.content}
-                    </p>
-                  </div>
-                </div>`
-    } else if (message.image.url) {
+    var htmlContent =`<div class="message" data-id="${message.id}">
+                ${insert_html}
+                <div class="message__text">
+                  <p class="lower-message__content">
+                    ${message.content}
+                  </p>
+                </div>
+              </div>`
       //同様に、data-idが反映されるようにしている
-      var html =`<div class="message" data-id="${message.id}">
-                  ${insert_html}
-                  <div class="message__text">
-                    <img src=${message.image.url} class="lower-message__image" >
-                  </div>
-                </div>`
-    };
+    var htmlImage =`<div class="message" data-id="${message.id}">
+                ${insert_html}
+                <div class="message__text">
+                  <img src=${message.image.url} class="lower-message__image" >
+                </div>
+              </div>`
+
+    var html = message.content && message.image.url
+        ? `${htmlContentImage}`
+        :(message.content ? htmlContent : htmlImage);
+        
     return html;
   };
 
@@ -98,7 +98,6 @@ $(function(){
     if($('.message').length){
 
       last_message_id = $('.message:last').data('id');
-      console.log(last_message_id)
       group_id = $('.main-header__left-box__current-group').data('group_id');
 
       $.ajax({
@@ -113,7 +112,6 @@ $(function(){
       .done(function(messages) {
         //追加するHTMLの入れ物を作る
         var insertHTML = '';
-        console.log(messages)
         messages.forEach(function(message){
           insertHTML = buildMessageHTML(message);
         });
@@ -121,7 +119,8 @@ $(function(){
         $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight });
       })
       .fail(function() {
-        console.log('error');
+        alert("自動更新が失敗しました");
+
       });
     }
   };
