@@ -50,17 +50,19 @@ $(function(){
   });
 
   var buildMessageHTML = function(message) {
+    var insert_html =`<div class="message__upper-info">
+                        <div class="message__upper-info__talker">
+                          ${message.user_name}
+                        </div>
+                        <div class="message__upper-info__date">
+                          ${message.created_at}
+                        </div>
+                      </div>`
+
     if (message.content && message.image.url) {
       //data-idが反映されるようにしている
       var html =`<div class="message" data-id="${message.id}">
-                  <div class="message__upper-info">
-                    <div class="message__upper-info__talker">
-                      ${message.user_name}
-                    </div>
-                    <div class="message__upper-info__date">
-                      ${message.created_at}
-                    </div>
-                  </div>
+                  ${insert_html}
                   <div class="message__text">
                     <p class="lower-message__content">
                       ${message.content}
@@ -71,14 +73,7 @@ $(function(){
     } else if (message.content) {
       //同様に、data-idが反映されるようにしている
       var html =`<div class="message" data-id="${message.id}">
-                  <div class="message__upper-info">
-                    <div class="message__upper-info__talker">
-                      ${message.user_name}
-                    </div>
-                    <div class="message__upper-info__date">
-                      ${message.created_at}
-                    </div>
-                  </div>
+                  ${insert_html}
                   <div class="message__text">
                     <p class="lower-message__content">
                       ${message.content}
@@ -88,14 +83,7 @@ $(function(){
     } else if (message.image.url) {
       //同様に、data-idが反映されるようにしている
       var html =`<div class="message" data-id="${message.id}">
-                  <div class="message__upper-info">
-                    <div class="message__upper-info__talker">
-                      ${message.user_name}
-                    </div>
-                    <div class="message__upper-info__date">
-                      ${message.created_at}
-                    </div>
-                  </div>
+                  ${insert_html}
                   <div class="message__text">
                     <img src=${message.image.url} class="lower-message__image" >
                   </div>
