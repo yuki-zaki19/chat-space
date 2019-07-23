@@ -18,6 +18,11 @@ $bright-color: #38AEF0;
   float: left;
 }
 
+.chat-side a{
+  color: white;
+  text-decoration: none;
+}
+
   .side-header{
     background-color: #253141;
     height: 100px;
@@ -30,6 +35,7 @@ $bright-color: #38AEF0;
         width: 100%;
         justify-content: space-between;
         font-weight: bold;
+        
 
         &__menu{
           display: flex;
@@ -71,6 +77,10 @@ $bright-color: #38AEF0;
   float: left;
 }
 
+.chat-main a{
+  color:$bright-color;
+  text-decoration: none;
+}
   .main-header{
     background-color: white;
     border-bottom: solid 1px #eeeeee;
