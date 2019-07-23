@@ -116,7 +116,9 @@ $(document).on('turbolinks:load',function(){
           insertHTML = buildMessageHTML(message);
         });
         $('.messages').append(insertHTML);
+        if(insertHTML.length){
         $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight });
+        }
       })
       .fail(function() {
         alert("自動更新が失敗しました");
